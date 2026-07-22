@@ -13,7 +13,7 @@ async function startBot() {
   const sock = makeWASocket({
     auth: state,
     logger: P({ level: "silent" }),
-    printQRInTerminal: true
+    browser: ["Jawad Casino Bot", "Chrome", "1.0.0"]
   });
 sock.ev.on("messages.upsert", async ({ messages }) => {
     const msg = messages[0];
