@@ -1,3 +1,4 @@
+const messageHandler = require("./events/message");
 const {
   default: makeWASocket,
   useMultiFileAuthState,
@@ -14,7 +15,12 @@ async function startBot() {
     logger: P({ level: "silent" }),
     printQRInTerminal: true
   });
-
+sock.ev.on("messages.upsert", async ({ messages }) => {
+    const msg = messages[0];
+    if (!msg.key.fromMe) {
+        messageHandler(sock, msg);
+    }
+});
   sock.ev.on("creds.update", saveCreds);
 
   sock.ev.on("connection.update", ({ connection }) => {
