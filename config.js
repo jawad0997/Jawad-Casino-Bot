@@ -1,10 +1,5 @@
 module.exports = {
-  BOT_NAME: "Jawad Casino Bot",
-  OWNER_NAME: "Jawad",
-
-  PREFIXES: ["!", ".", "💲"],
-
-  CURRENCY: "$",
-
-  START_BALANCE: 1000
+  botName: "Jawad Casino Bot",
+  owner: "Jawad",
+  prefixes: [".", "!"]
 };
