@@ -1,1 +1,1 @@
-console.log("🎰 Jawad Casino Bot Starting...");
+console.log("Jawad Casino Bot Starting...");
