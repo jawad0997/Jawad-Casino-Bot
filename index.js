@@ -22,6 +22,27 @@ async function startBot() {
     browser: ["Jawad Casino Bot", "Chrome", "1.0.0"]
   });
 
+  // Pair Code Login
+  sock.ev.on("connection.update", async (update) => {
+    const { connection } = update;
+
+    if (connection === "connecting" && !state.creds.registered) {
+      const phoneNumber = "923363665491"; // 👈 yahan apna WhatsApp number likho
+
+      const code = await sock.requestPairingCode(phoneNumber);
+
+      console.log("🔑 Pair Code:", code);
+    }
+
+    if (connection === "open") {
+      console.log("✅ Jawad Casino Bot Connected!");
+    }
+
+    if (connection === "close") {
+      console.log("❌ Disconnected. Restart the bot.");
+    }
+  });
+
   // Commands Handler
   sock.ev.on("messages.upsert", async ({ messages }) => {
     const msg = messages[0];
@@ -33,17 +54,6 @@ async function startBot() {
 
   // Save Session
   sock.ev.on("creds.update", saveCreds);
-
-  // Connection Status
-  sock.ev.on("connection.update", ({ connection }) => {
-    if (connection === "open") {
-      console.log("✅ Jawad Casino Bot Connected!");
-    }
-
-    if (connection === "close") {
-      console.log("❌ Disconnected. Restart the bot.");
-    }
-  });
 }
 
 startBot();
