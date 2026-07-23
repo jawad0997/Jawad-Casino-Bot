@@ -8,9 +8,9 @@
     "start": "node index.js"
   },
   "dependencies": {
-   "@whiskeysockets/baileys": "7.0.0-rc13",
-    "dotenv": "^17.4.2",
-    "pino": "^9.3.2",
+    "@whiskeysockets/baileys": "6.7.9",
+    "dotenv": "^16.4.7",
+    "pino": "^9.6.0",
     "qrcode-terminal": "^0.12.0"
   }
 }
