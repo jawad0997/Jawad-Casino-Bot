@@ -1,28 +1,40 @@
 module.exports = {
+
     name: "menu",
-    description: "Bot Menu",
+    description: "Show bot menu",
 
     async execute(sock, msg) {
 
-        await sock.sendMessage(msg.key.remoteJid, {
-            text:
-`╭━━━━━━━━━━━━━━━━━━
+        const menu = `╭━━━━━━━━━━━━━━━━━━━━
 ┃ 🎰 *Jawad Casino Bot*
-┣━━━━━━━━━━━━━━━━━━
+┣━━━━━━━━━━━━━━━━━━━━
 ┃
-┃ 📜 Available Commands
+┃ 👋 Welcome
 ┃
-┃ 🏓 .ping
-┃ 📋 .menu
-┃ 💰 .balance
-┃ 🎁 .daily
-┃ 🪙 .coinflip
+┣━━ 🎮 Games
+┃ 🎲 .coinflip
 ┃ 🎡 .roulette
 ┃ 🃏 .blackjack
-┃ 🎲 .dice
+┃ 🎯 .dice
 ┃
-╰━━━━━━━━━━━━━━━━━━`
+┣━━ 💰 Economy
+┃ 💳 .balance
+┃ 🎁 .daily
+┃ 💸 .give
+┃
+┣━━ ⚙ Utility
+┃ 🏓 .ping
+┃ 📋 .menu
+┃
+┣━━ 👑 Owner
+┃ 👤 .owner
+┃
+╰━━━━━━━━━━━━━━━━━━━━`;
+
+        await sock.sendMessage(msg.key.remoteJid, {
+            text: menu
         });
 
     }
+
 };
