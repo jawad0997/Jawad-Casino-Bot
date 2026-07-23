@@ -71,6 +71,7 @@ async function startBot() {
 
     sock.ev.on("messages.upsert", async ({ messages }) => {
       try {
+        console.log("📩 Message:", JSON.stringify(messages[0], null, 2));
         const msg = messages[0];
         if (!msg?.message || msg.key?.fromMe) return;
         await messageHandler(sock, msg);
