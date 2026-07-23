@@ -1,6 +1,8 @@
 const config = require("../config");
+const commands = require("../utils/commandHandler");
 
 module.exports = async (sock, msg) => {
+
     if (!msg.message) return;
 
     const text =
@@ -10,14 +12,17 @@ module.exports = async (sock, msg) => {
     if (!text) return;
 
     const prefix = config.prefixes.find(p => text.startsWith(p));
+
     if (!prefix) return;
 
     const args = text.slice(prefix.length).trim().split(/ +/);
-    const command = args.shift().toLowerCase();
 
-    if (command === "ping") {
-        await sock.sendMessage(msg.key.remoteJid, {
-            text: "🏓 Pong!"
-        });
-    }
+    const commandName = args.shift().toLowerCase();
+
+    const command = commands.get(commandName);
+
+    if (!command) return;
+
+    command.execute(sock, msg, args);
+
 };
